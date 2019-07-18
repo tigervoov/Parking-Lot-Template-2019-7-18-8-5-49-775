@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,12 +32,16 @@ public class ParkingLotTest {
     @Autowired
     private ParkingLotRepository parkingLotRepository;
     @Test
-    public void should_return_201when_add_new_parkingLot() throws Exception {
+    public void should_return_201_when_add_new_parkingLot() throws Exception {
         ParkingLot parkingLot=new ParkingLot("1","100","珠海香洲");
         JSONObject jsonObject=new JSONObject(parkingLot);
         this.mockMvc.perform(post("/parkinglots").content(jsonObject.toString()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
 
     }
-    
+    @Test
+    public void should_return_200_when_delete_a_parkingLot() throws Exception{
+        this.mockMvc.perform(delete("/parkinglots/parkinglot1")).andExpect(status().isOk());
+    }
+
 
 }

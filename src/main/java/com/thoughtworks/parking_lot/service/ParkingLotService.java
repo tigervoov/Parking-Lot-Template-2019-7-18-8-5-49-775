@@ -19,4 +19,8 @@ public class ParkingLotService {
     }
 
 
+    public void deleteParkingLotByName(String name) {
+        String uuid=parkingLotRepository.findByName(name);
+        parkingLotRepository.deleteById(uuid);
+    }
 }

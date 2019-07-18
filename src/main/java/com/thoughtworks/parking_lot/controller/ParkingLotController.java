@@ -26,6 +26,11 @@ public class ParkingLotController {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @DeleteMapping("/{parkingLotName}")
+    public ResponseEntity delete(@PathVariable String parkingLotName){
+        parkingLotService.deleteParkingLotByName(parkingLotName);
+        return ResponseEntity.ok().build();
+    }
 
 
 }
