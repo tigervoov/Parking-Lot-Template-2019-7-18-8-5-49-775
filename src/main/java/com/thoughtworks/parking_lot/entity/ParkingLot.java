@@ -6,8 +6,10 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "PARKING_LOT")
 public class ParkingLot {
 
     @Id
@@ -15,11 +17,21 @@ public class ParkingLot {
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String id;
 
+    private String parking_name;
+
     private String capacity;
 
     private String location;
 
     public ParkingLot() {
+    }
+
+    public String getParking_name() {
+        return parking_name;
+    }
+
+    public void setParking_name(String parking_name) {
+        this.parking_name = parking_name;
     }
 
     public String getId() {
