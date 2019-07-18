@@ -26,6 +26,12 @@ public class ParkingLot {
     public ParkingLot() {
     }
 
+    public ParkingLot(String parking_name, String capacity, String location) {
+        this.parking_name = parking_name;
+        this.capacity = capacity;
+        this.location = location;
+    }
+
     public String getParking_name() {
         return parking_name;
     }
