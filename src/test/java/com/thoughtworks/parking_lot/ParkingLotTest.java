@@ -68,7 +68,22 @@ public class ParkingLotTest {
 
         Assertions.assertEquals("parkinglot11",jsonObject.getString("parking_name"));
     }
+    @Test
+    public void should_return_parkingLot_info_when_update_a_parkingLot()throws Exception{
+        //given
+        ParkingLot parkingLot=new ParkingLot("停车场1","60","珠海香洲");
+        ParkingLot parkingLot1=parkingLotRepository.saveAndFlush(parkingLot);
 
+
+
+        //when
+        parkingLot1.setCapacity("80");
+        JSONObject jsonObject=new JSONObject(parkingLot1);
+        String resultParkingLot=this.mockMvc.perform(put("/parkinglots").content(jsonObject.toString()).contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse().getContentAsString();
+        //then
+        JSONObject returnJsonObject=new JSONObject(resultParkingLot);
+        Assertions.assertEquals("80",returnJsonObject.getString("capacity"));
+    }
 
 
 }

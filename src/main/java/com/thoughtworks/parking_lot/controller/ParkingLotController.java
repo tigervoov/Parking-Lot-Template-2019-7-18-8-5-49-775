@@ -44,6 +44,13 @@ public class ParkingLotController {
         ParkingLot parkingLot=parkingLotService.findParkingLotByName(parkingLotName);
         return ResponseEntity.ok().body(parkingLot);
     }
+    @PutMapping(produces = {"application/json"})
+    public ResponseEntity updateParkingLotInfo(@RequestBody ParkingLot parkingLot){
+        ParkingLot returnParkingLot=parkingLotService.updateParkingLot(parkingLot);
+
+        return ResponseEntity.ok().body(returnParkingLot);
+
+    }
 
 
 

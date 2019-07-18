@@ -34,4 +34,8 @@ public class ParkingLotService {
         String uuid=parkingLotRepository.findByName(parkingLotName);
        return parkingLotRepository.findById(uuid).get();
     }
+
+    public ParkingLot updateParkingLot(ParkingLot parkingLot) {
+        return parkingLotRepository.saveAndFlush(parkingLot);
+    }
 }
