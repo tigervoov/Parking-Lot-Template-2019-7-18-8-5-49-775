@@ -22,15 +22,15 @@ public class ParkingOrdersService {
     private ParkingLotRepository parkingLotRepository;
 
     public String addParkingOrder(ParkingOrders parkingOrders) {
-        String parkingName=parkingOrders.getParking_name();
-        String  parkingLotCapacity=parkingLotRepository.findParkingLotByName(parkingName);
-        Integer capacity=Integer.valueOf(parkingLotCapacity);
-        if(capacity>0){
+        String parkingName = parkingOrders.getParking_name();
+        String parkingLotCapacity = parkingLotRepository.findParkingLotByName(parkingName);
+        Integer capacity = Integer.valueOf(parkingLotCapacity);
+        if (capacity > 0) {
             parkingOrdersRepository.save(parkingOrders);
-            String newCapacity=String.valueOf(capacity-1);
-            parkingLotRepository.updateCapacity(parkingName,newCapacity);
+            String newCapacity = String.valueOf(capacity - 1);
+            parkingLotRepository.updateCapacity(parkingName, newCapacity);
             return "请入场";
-        }else {
+        } else {
             return "车位已满";
         }
     }
@@ -39,6 +39,10 @@ public class ParkingOrdersService {
         parkingOrders.setEnd_time(String.valueOf(new Date().getTime()));
         parkingOrders.setStatus("1");
         //parkingOrdersRepository.saveAndFlush(parkingOrders);
-        parkingOrdersRepository.updateOrder(parkingOrders.getCar_number(),parkingOrders.getEnd_time(),parkingOrders.getStatus());
+        parkingOrdersRepository.updateOrder(parkingOrders.getCar_number(), parkingOrders.getEnd_time(), parkingOrders.getStatus());
+        String parkingLotCapacity = parkingLotRepository.findParkingLotByName(parkingOrders.getParking_name());
+        Integer capacity = Integer.valueOf(parkingLotCapacity);
+        String newCapacity = String.valueOf(capacity + 1);
+        parkingLotRepository.updateCapacity(parkingOrders.getParking_name(), newCapacity);
     }
 }
