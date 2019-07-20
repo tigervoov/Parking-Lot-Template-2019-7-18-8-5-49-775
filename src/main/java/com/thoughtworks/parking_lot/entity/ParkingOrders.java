@@ -30,11 +30,10 @@ public class ParkingOrders {
     public ParkingOrders() {
     }
 
-    public ParkingOrders(String parking_name, String car_number, String start_time, String end_time) {
+    public ParkingOrders(String parking_name, String car_number, String start_time) {
         this.parking_name = parking_name;
         this.car_number = car_number;
         this.start_time = start_time;
-        this.end_time = end_time;
     }
 
 

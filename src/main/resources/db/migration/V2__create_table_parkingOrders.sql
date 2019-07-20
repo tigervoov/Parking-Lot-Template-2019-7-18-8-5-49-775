@@ -3,6 +3,6 @@ CREATE table parking_orders(
     parking_name VARCHAR UNIQUE,
     car_number VARCHAR NOT NULL,
     start_time VARCHAR NOT NULL,
-    end_time VARCHAR NOT NULL,
+    end_time VARCHAR,
     status INT DEFAULT 0
 )

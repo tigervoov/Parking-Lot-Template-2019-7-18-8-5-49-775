@@ -95,7 +95,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot1=parkingLotRepository.saveAndFlush(parkingLot);
 
         //when
-        ParkingOrders parkingOrders=new ParkingOrders("南软停车场","粤C:IT8888","2018-10-12 18:21:12","2018-10-12 23:21:12");
+        ParkingOrders parkingOrders=new ParkingOrders("南软停车场","粤C:IT8888","2018-10-12 18:21:12");
         JSONObject jsonObject=new JSONObject(parkingOrders);
 
         //then
