@@ -99,8 +99,20 @@ public class ParkingLotTest {
         JSONObject jsonObject=new JSONObject(parkingOrders);
 
         //then
-        this.mockMvc.perform(post("/parkingOrders").content(jsonObject.toString()).contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated());
+        this.mockMvc.perform(post("/parkingOrders").content(jsonObject.toString())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated());
 
+    }
+    @Test
+    public void should_change_order_isCompleted_is_true_when_fetch_a_car_from_parkingLot()throws Exception{
+        //given
+        ParkingOrders parkingOrders=new ParkingOrders("南软停车场","粤C:IT8888","2018-10-12 18:21:12");
+        parkingOrdersRepository.saveAndFlush(parkingOrders);
+        JSONObject jsonObject=new JSONObject(parkingOrders);
+
+        //when+then
+        this.mockMvc.perform(put("/parkingOrders/").content(jsonObject.toString())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk());
     }
 
 

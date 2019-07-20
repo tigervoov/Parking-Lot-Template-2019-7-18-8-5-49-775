@@ -24,8 +24,7 @@ public class ParkingOrders {
     private String start_time;
     private String end_time;
 
-    @Column(name = "status")
-    private boolean isCompleted;
+    private String status;
 
     public ParkingOrders() {
     }
@@ -37,12 +36,12 @@ public class ParkingOrders {
     }
 
 
-    public boolean isCompleted() {
-        return isCompleted;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getId() {

@@ -21,5 +21,10 @@ public class ParkingOrdersController {
         String resultMessage=parkingOrdersService.addParkingOrder(parkingOrders);
         return ResponseEntity.status(HttpStatus.CREATED).body(resultMessage);
     }
+    @PutMapping(produces = {"application/json"})
+    public ResponseEntity fetchaCar(@RequestBody ParkingOrders parkingOrders){
+        parkingOrdersService.updateOrderStatus(parkingOrders);
+        return ResponseEntity.ok().build();
+    }
 
 }

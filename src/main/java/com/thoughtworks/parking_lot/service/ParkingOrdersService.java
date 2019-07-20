@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 @Transactional
 public class ParkingOrdersService {
@@ -31,5 +33,12 @@ public class ParkingOrdersService {
         }else {
             return "车位已满";
         }
+    }
+
+    public void updateOrderStatus(ParkingOrders parkingOrders) {
+        parkingOrders.setEnd_time(String.valueOf(new Date().getTime()));
+        parkingOrders.setStatus("1");
+        //parkingOrdersRepository.saveAndFlush(parkingOrders);
+        parkingOrdersRepository.updateOrder(parkingOrders.getCar_number(),parkingOrders.getEnd_time(),parkingOrders.getStatus());
     }
 }

@@ -15,4 +15,4 @@ insert into parking_lot values('a83a2cfe479d46928caea1b1a8f41c93','parkinglot14'
 insert into parking_lot values('010e30670664442ebd809d5d7e8f63f5','parkinglot15','100','zhuhai');//5
 insert into parking_lot values('75c3e3956c5b4db080b6429c0daab896','parkinglot16','100','zhuhai');
 insert into parking_lot values('8c42a93e71274067823a834c090c00e8','parkinglot17','100','zhuhai');
-insert into parking_lot values('0d8a4e6898354d4a8ea64f9f60ab76a9','parkinglot18','100','zhuhai');
+insert into parking_lot values('0d8a4e6898354d4a8ea64f9f60ab76a9','南软停车场','60','珠海香洲');
