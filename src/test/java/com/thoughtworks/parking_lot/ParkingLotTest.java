@@ -94,13 +94,13 @@ public class ParkingLotTest {
         ParkingLot parkingLot=new ParkingLot("南软停车场","60","珠海香洲");
         ParkingLot parkingLot1=parkingLotRepository.saveAndFlush(parkingLot);
 
-        ParkingOrders parkingOrders=new ParkingOrders("南软停车场","粤C:IT8888","2018-10-12 18:21:12","2018-10-12 23:21:12");
-
         //when
+        ParkingOrders parkingOrders=new ParkingOrders("南软停车场","粤C:IT8888","2018-10-12 18:21:12","2018-10-12 23:21:12");
+        JSONObject jsonObject=new JSONObject(parkingOrders);
 
         //then
-        JSONObject returnJsonObject=new JSONObject(resultParkingLot);
-        Assertions.assertEquals("80",returnJsonObject.getString("capacity"));
+        this.mockMvc.perform(post("/parkingOrders").content(jsonObject.toString()).contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated());
+
     }
 
 

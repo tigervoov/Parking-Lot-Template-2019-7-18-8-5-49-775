@@ -17,22 +17,33 @@ public class ParkingOrders {
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String id;
 
-    private String parkingLotName;
+    private String parking_name;
 
-    private String carNum;
+    private String car_number;
 
-    private String startTime;
-    private String endTime;
+    private String start_time;
+    private String end_time;
+
+    @Column(name = "status")
     private boolean isCompleted;
 
     public ParkingOrders() {
     }
 
-    public ParkingOrders(String parkingLotName, String carNum, String startTime, String endTime) {
-        this.parkingLotName = parkingLotName;
-        this.carNum = carNum;
-        this.startTime = startTime;
-        this.endTime = endTime;
+    public ParkingOrders(String parking_name, String car_number, String start_time, String end_time) {
+        this.parking_name = parking_name;
+        this.car_number = car_number;
+        this.start_time = start_time;
+        this.end_time = end_time;
+    }
+
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
 
     public String getId() {
@@ -43,43 +54,35 @@ public class ParkingOrders {
         this.id = id;
     }
 
-    public String getParkingLotName() {
-        return parkingLotName;
+    public String getParking_name() {
+        return parking_name;
     }
 
-    public void setParkingLotName(String parkingLotName) {
-        this.parkingLotName = parkingLotName;
+    public void setParking_name(String parking_name) {
+        this.parking_name = parking_name;
     }
 
-    public String getCarNum() {
-        return carNum;
+    public String getCar_number() {
+        return car_number;
     }
 
-    public void setCarNum(String carNum) {
-        this.carNum = carNum;
+    public void setCar_number(String car_number) {
+        this.car_number = car_number;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getEnd_time() {
+        return end_time;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
     }
 }
