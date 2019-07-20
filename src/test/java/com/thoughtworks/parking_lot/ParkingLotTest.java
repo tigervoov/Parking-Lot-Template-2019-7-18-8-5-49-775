@@ -2,9 +2,11 @@ package com.thoughtworks.parking_lot;
 
 
 import com.thoughtworks.parking_lot.entity.ParkingLot;
+import com.thoughtworks.parking_lot.entity.ParkingOrders;
 import com.thoughtworks.parking_lot.repository.ParkingLotRepository;
 
 
+import com.thoughtworks.parking_lot.repository.ParkingOrdersRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
@@ -29,11 +31,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ParkingLotTest {
 
 
+
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ParkingLotRepository parkingLotRepository;
+
+    @Autowired
+    private ParkingOrdersRepository parkingOrdersRepository;
 
 
     @Test
@@ -83,15 +89,15 @@ public class ParkingLotTest {
         Assertions.assertEquals("80",returnJsonObject.getString("capacity"));
     }
     @Test
-    public void should_build_parkingOrder_when_update_a_parkingLot()throws Exception{
+    public void should_build_parkingOrder_when_park_a_car_to_parkingLot()throws Exception{
         //given
-        ParkingLot parkingLot=new ParkingLot("停车场1","60","珠海香洲");
+        ParkingLot parkingLot=new ParkingLot("南软停车场","60","珠海香洲");
         ParkingLot parkingLot1=parkingLotRepository.saveAndFlush(parkingLot);
 
+        ParkingOrders parkingOrders=new ParkingOrders("南软停车场","粤C:IT8888","2018-10-12 18:21:12","2018-10-12 23:21:12");
+
         //when
-        parkingLot1.setCapacity("80");
-        JSONObject jsonObject=new JSONObject(parkingLot1);
-        String resultParkingLot=this.mockMvc.perform(put("/parkinglots").content(jsonObject.toString()).contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse().getContentAsString();
+
         //then
         JSONObject returnJsonObject=new JSONObject(resultParkingLot);
         Assertions.assertEquals("80",returnJsonObject.getString("capacity"));
