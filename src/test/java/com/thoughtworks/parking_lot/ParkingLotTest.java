@@ -104,7 +104,7 @@ public class ParkingLotTest {
 
     }
     @Test
-    public void should_change_order_isCompleted_is_true_when_fetch_a_car_from_parkingLot()throws Exception{
+    public void should_change_order_status_is_true_when_fetch_a_car_from_parkingLot()throws Exception{
         //given
         ParkingOrders parkingOrders=new ParkingOrders("南软停车场","粤C:IT8888","2018-10-12 18:21:12");
         parkingOrdersRepository.saveAndFlush(parkingOrders);
@@ -114,6 +114,17 @@ public class ParkingLotTest {
         this.mockMvc.perform(put("/parkingOrders/").content(jsonObject.toString())
                 .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk());
     }
+    @Test
+    public void should_say_the_parkingLot_is_full_when_a_car_park_to_no_capacity_parkingLot()throws Exception{
+        //given
+        ParkingLot parkingLot=new ParkingLot("南软停车场1","0","珠海香洲");
+        parkingLotRepository.saveAndFlush(parkingLot);
+        ParkingOrders parkingOrders=new ParkingOrders("南软停车场1","粤C:IT8888","2018-10-12 18:21:12");
+        JSONObject jsonObject=new JSONObject(parkingOrders);
 
+        String resuleMessage=this.mockMvc.perform(post("/parkingOrders/").content(jsonObject.toString())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse().getContentAsString();
+        Assertions.assertEquals("车位已满",resuleMessage);
+    }
 
 }
